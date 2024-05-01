@@ -1,0 +1,165 @@
+﻿@model  FYPWeb.Model.ManageCourse
+@{
+    ViewBag.Title = "AssignCourse";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NUML</title>
+    <link rel="shortcut icon" type="image/png" href="~/Images/logo.png" />
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/bootstrap.css" />
+    <link rel="stylesheet" href="~/Content/bootstrap.css.map" />
+    <link rel="stylesheet" href="~/fonts/Font/font-awesome/css/all.min.css" />
+    <link rel="stylesheet" href="~/CSS/Table.css" />
+    <style>
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+            .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+
+                .dropdown-content a:hover {
+                    background-color: #f1f1f1;
+                }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <section>
+            <div class="container-fluid" style="padding: 0;">
+                <div class="row" style="height: 100vh; overflow-y: auto;">
+                    <div class="col-lg-2" style="background-color: #8EA1E6; height:100%">
+                        <div style="background: #2B2941; width: 65%;  border-radius: 20px; margin: 40px;padding:10% ">
+                            <img src="~/Images/Graduation Cap.png" style="width:70%;height:auto;margin-right:-6%" />
+                        </div>
+                        <div class="row">
+                            <a href="@Url.Action("CoordinatorsDashboard","Coordinators")" style="color:black">
+                                <div class="col-lg-12">
+                                    <div class="col-lg-3" style="margin-left:3%">
+                                        <img src="~/Images/Vector.png" />
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <p style="font-family:Minion Variable Concept; font-weight:bold;font-size:medium">Coordinator Dashboard</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="col-lg-12" style="margin-top: 150%">
+                                <a href="@Url.Action("Logout","Student")" style="color:black">
+                                    <div class="col-lg-3" style="margin-left:3%">
+                                        <i class="fa fa-sign-out"></i>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <p style="font-family:Minion Variable Concept; font-weight:bold;font-size:medium">Log out</p>
+                                    </div>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-10" style="background-color: #FFFFFF; height:100%">
+                        <div class="row">
+                            <div class="col-lg-12" style="background: #e6e6e6; width: 90%; margin: 5%; border-radius: 25px">
+                                <div class="col-lg-3">
+                                    <img src="~/Images/Rectangle 1.jpg" style="width: 55%; height: auto; border-radius: 20%;margin-top:15%" />
+                                </div>
+                                <div class="col-lg-9" style="text-align:left;font-family: Minion Variable Concept">
+                                    <h1>@Model.coordinator.Name</h1>
+                                    <h3>Admin Id:@Model.coordinator.EmpId</h3>
+                                    <h3>Department: @Model.coordinator.Department</h3>
+                                </div>
+                            </div>
+                            <div class="col-lg-12" style="margin-bottom:3%;">
+                                <h1>Assign Semester Course</h1>
+
+
+                            </div>
+
+                            @using (Html.BeginForm("AssignNewCourse", "Coordinators", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                                <div class="col-lg-12">
+                                    <div class="col-lg-6" style="text-align: left;">
+                                        <div class="col-lg-12">
+                                            <div class="col-lg-4">
+                                                <h3>Semester No:</h3>
+
+                                            </div>
+                                            <div class="col-lg-8">
+                                                
+                                                @Html.DropDownListFor(model => model.studentsCours.SemesterNo, new List<SelectListItem>
+                                                   {
+                                                       new SelectListItem { Text = "1", Value = "1" },
+                                                       new SelectListItem { Text = "2", Value = "2" },
+                                                       new SelectListItem { Text = "3", Value = "3" },
+                                                       new SelectListItem { Text = "4", Value = "4" },
+                                                       new SelectListItem { Text = "5", Value = "5" },
+                                                       new SelectListItem { Text = "6", Value = "6" },
+                                                       new SelectListItem { Text = "7", Value = "7" },
+                                                       new SelectListItem { Text = "8", Value = "8" },
+                                                       new SelectListItem { Text = "9", Value = "9" },
+                                                       new SelectListItem { Text = "10", Value = "10" },
+                                                       new SelectListItem { Text = "11", Value = "11" }
+                                                   }, "Select Semester", new { @class = "form-control", @style = "font-size:17px;height:40px;margin-top:6%" })
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6" style="text-align: left;">
+                                        <div class="col-lg-12">
+                                            <div class="col-lg-4">
+                                                <h3>Course : </h3>
+                                            </div>
+                                            <div class="col-lg-8">
+                                             @Html.DropDownListFor(model => model.studentsCours.CourseId, new SelectList(Model.Courses, "CourseId", "CourseName"), "-- Select Course --", new { @class = "form-control", @style = "font-size:17px;height:40px;margin-bottom:15%" })
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-lg-12" style="margin-bottom:20%">
+                                    <div class="col-lg-7"></div>
+                                    <div class="col-lg-4">
+                                        <input type="submit" style="margin-left:35%; padding:3% 6% 3% 6% ; background-color: #8ea1e6;border:none;font-size:20px;border-radius:15px;color :White" value="Create" />
+                                    </div>
+
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </center>
+</body>
+</html>
+
+
+
+
+
+
+
+

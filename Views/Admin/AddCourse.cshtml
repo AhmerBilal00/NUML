@@ -1,0 +1,178 @@
+﻿@model  FYPWeb.Model.StudentUser
+
+@{
+    ViewBag.Title = "AddCourse";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NUML</title>
+    <link rel="shortcut icon" type="image/png" href="~/Images/logo.png" />
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/bootstrap.css" />
+    <link rel="stylesheet" href="~/Content/bootstrap.css.map" />
+    <link rel="stylesheet" href="~/fonts/Font/font-awesome/css/all.min.css" />
+    <link rel="stylesheet" href="~/CSS/Table.css" />
+    <style>
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+            .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+
+                .dropdown-content a:hover {
+                    background-color: #f1f1f1;
+                }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+
+        .defaultButton {
+            background-color: #e6e6e6; /* Default button color */
+        }
+
+        .selected {
+            background-color: #8ea1e6; /* Selected button color */
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <section>
+            <div class="container-fluid" style="padding: 0;">
+                <div class="row" style="height: 100vh; overflow-y: auto;">
+                    <div class="col-lg-2" style="background-color: #8EA1E6; height:100%">
+                        <div style="background: #2B2941; width: 65%;  border-radius: 20px; margin: 40px;padding:10% ">
+                            <img src="~/Images/Graduation Cap.png" style="width:70%;height:auto;margin-right:-6%" />
+                        </div>
+                        <div class="row">
+                            <a href="@Url.Action("AdminDashboard","Admin")" style="color:black">
+                                <div class="col-lg-12">
+                                    <div class="col-lg-3" style="margin-left:3%">
+                                        <img src="~/Images/Vector.png" />
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <p style="font-family:Minion Variable Concept; font-weight:bold;font-size:medium">Student Dashboard</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="col-lg-12" style="margin-top:150%">
+                                <a href="@Url.Action("Logout","Student")" style="color:black">
+                                    <div class="col-lg-2" style="margin-left:3%">
+                                        <i class="fa fa-sign-out"></i>
+                                    </div>
+                                    <div class="col-lg-9">
+                                        <p style="font-family:Minion Variable Concept; font-weight:bold;font-size:medium">Log out</p>
+                                    </div>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-10" style="background-color: #FFFFFF; height:100%">
+                        <div class="row">
+                            <div class="col-lg-12" style="background: #e6e6e6; width: 90%; margin: 5%; border-radius: 25px">
+                                <div class="col-lg-3">
+                                    <img src="~/Images/Rectangle 1.jpg" style="width: 55%; height: auto; border-radius: 20%;margin-top:5%" />
+                                </div>
+                                <div class="col-lg-9" style="text-align:left;font-family: Minion Variable Concept">
+                                    <h1>@Model.Admin.Name</h1>
+                                    <h3>Admin Id:@Model.Admin.AdminStaffId</h3>
+                                    <h3>Department: Admin Branch</h3>
+                                </div>
+                            </div>
+                            <div class="col-lg-12" style="margin-bottom:3%;">
+                                <h1>Add Course</h1>
+
+
+                            </div>
+                            
+                             @using (Html.BeginForm("AddNewCourse", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                {
+                                    <div class="col-lg-12">
+                                        <div class="col-lg-6" style="text-align: left;">
+                                            <div class="col-lg-12">
+                                                <div class="col-lg-4">
+                                                    <h3>Course Name :</h3>
+                                                    <h3>Credit Hours:</h3>
+                                                    <h3>Course Code :</h3>
+                                                    <h3>Theory Credit Course :</h3>
+                                                    
+                                                </div>
+                                                <div class="col-lg-8">
+                                                    <h4>@Html.TextBoxFor(model => model.SingleCourse.CourseName, new { placeholder = "Name", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
+                                                    <h4>@Html.TextBoxFor(model => model.SingleCourse.TotalCreditHours, new { placeholder = "Credit", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
+                                                    <h4>@Html.TextBoxFor(model => model.SingleCourse.CourseCode, new { placeholder = "Course Code", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
+                                                    <h4>@Html.TextBoxFor(model => model.SingleCourse.TheoryCreditHours, new { placeholder = "Theory Credit Hourse", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
+                              
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6" style="text-align: left;">
+                                            <div class="col-lg-12">
+                                                <div class="col-lg-4">
+                                                    <h3>Lab Credit Course : </h3>
+                                                    
+                                                    <h3>Program</h3>
+                                                </div>
+                                                <div class="col-lg-8">
+                                                    <h4>@Html.TextBoxFor(model => model.SingleCourse.LabCreditHours, null, new { placeholder = "Password", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
+                                                    
+                                                    @Html.DropDownListFor(model => model.SingleCourse.ProgrammeId, new SelectList(Model.Programmes, "ProgrammeId", "ProgrammeName"), "-- Select Campus --", new { @class = "form-control", @style = "font-size:17px;height:40px;margin-bottom:15%" })
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-12" style="margin-bottom:20%">
+                                        <div class="col-lg-7"></div>
+                                        <div class="col-lg-4">
+                                            <input type="submit" style="margin-left:35%; padding:3% 6% 3% 6% ; background-color: #8ea1e6;border:none;font-size:20px;border-radius:15px;color :White" value="Create" />
+                                        </div>
+
+                                    </div>
+                                }
+                            
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </center>
+    
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

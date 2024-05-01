@@ -1,0 +1,449 @@
+﻿@model  FYPWeb.Model.StudentUser
+@{
+    ViewBag.Title = "CreateProfile";
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NUML</title>
+    <link rel="shortcut icon" type="image/png" href="~/Images/logo.png" />
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/bootstrap.css" />
+    <link rel="stylesheet" href="~/Content/bootstrap.css.map" />
+    <link rel="stylesheet" href="~/fonts/Font/font-awesome/css/all.min.css" />
+    <link rel="stylesheet" href="~/CSS/Table.css" />
+    <style>
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+            .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+
+                .dropdown-content a:hover {
+                    background-color: #f1f1f1;
+                }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+
+        .defaultButton {
+            background-color: #e6e6e6; /* Default button color */
+        }
+
+        .selected {
+            background-color: #8ea1e6; /* Selected button color */
+        }
+    
+    </style>
+</head>
+<body>
+    <center>
+        <section>
+            <div class="container-fluid" style="padding: 0;">
+                <div class="row" style="height: 100vh; overflow-y: auto;">
+                    <div class="col-lg-2" style="background-color: #8EA1E6; height:100%">
+                        <div style="background: #2B2941; width: 65%;  border-radius: 20px; margin: 40px;padding:10% ">
+                            <img src="~/Images/Graduation Cap.png" style="width:70%;height:auto;margin-right:-6%" />
+                        </div>
+                        <div class="row">
+                            <a href="@Url.Action("AdminDashboard","Admin")" style="color:black">
+                                <div class="col-lg-12">
+                                    <div class="col-lg-3" style="margin-left:3%">
+                                        <img src="~/Images/Vector.png" />
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <p style="font-family:Minion Variable Concept; font-weight:bold;font-size:medium">Student Dashboard</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="col-lg-12" style="margin-top:150%">
+                                <a href="@Url.Action("Logout","Student")" style="color:black">
+                                    <div class="col-lg-2" style="margin-left:3%">
+                                        <i class="fa fa-sign-out"></i>
+                                    </div>
+                                    <div class="col-lg-9">
+                                        <p style="font-family:Minion Variable Concept; font-weight:bold;font-size:medium">Log out</p>
+                                    </div>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-10" style="background-color: #FFFFFF; height:100%">
+                        <div class="row">
+                            <div class="col-lg-12" style="background: #e6e6e6; width: 90%; margin: 5%; border-radius: 25px">
+                                <div class="col-lg-3">
+                                    <img src="~/Images/Rectangle 1.jpg" style="width: 55%; height: auto; border-radius: 20%;margin-top:5%" />
+                                </div>
+                                <div class="col-lg-9" style="text-align:left;font-family: Minion Variable Concept">
+                                    <h1>@Model.Admin.Name</h1>
+                                    <h3>Admin Id:@Model.Admin.AdminStaffId</h3>
+                                    <h3>Department: Admin Branch</h3>
+                                </div>
+                            </div>
+                            <div class="col-lg-12" style="margin-bottom:3%;">
+                                <h1>Create Profile</h1>
+
+                                <div class="col-lg-3">
+                                    User Type :  <button id="studentBtn" style="margin-left: 35%; padding: 3% 8% 3% 8%;  border: none; font-size: 20px; border-radius: 15px">Student</button>
+                                </div>
+                                <div class="col-lg-3">
+                                    <button id="coordinatorBtn" style="padding: 3% 8% 3% 8%; border: none; font-size: 20px; border-radius: 15px">Coordinator</button>
+                                </div>
+                                <div class="col-lg-3">
+                                    <button id="examBranchBtn" style="padding: 3% 8% 3% 8%; border: none; font-size: 20px; border-radius: 15px">Exam Branch</button>
+                                </div>
+                                <div class="col-lg-3">
+                                    <button id="adminBtn" class="defaultButton" style="padding: 3% 8% 3% 8%; border: none; font-size: 20px; border-radius: 15px">Admin</button>
+                                </div>
+
+                            </div>
+
+                            @if (!string.IsNullOrEmpty(ViewBag.Profile))
+                            {
+                                <div class="col-lg-12 alert" id="alertMessage">
+                                    <h3>@ViewBag.Profile</h3>
+                                </div>
+                            }
+                            <div id="studentForm" class="defaultButton">
+                                @using (Html.BeginForm("CreateStudent", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                {
+                                    <div class="col-lg-12">
+                                        <div class="col-lg-6" style="text-align: left;">
+                                            <div class="col-lg-12">
+                                                <div class="col-lg-4">
+                                                    <h3>Name :</h3>
+                                                    <h3>SystemID :</h3>
+                                                    <h3>Department :</h3>
+                                                    <h3>Degree :</h3>
+                                                    <h3>Email :</h3>
+                                                    <h3>Addmission</h3>
+
+                                                    <div style="display: inline-block;">
+                                                        @Html.RadioButtonFor(model => model.Student.Batch, "Fall", new { id = "Fall" })
+                                                        <label for="Fall">Fall</label>
+
+                                                        @Html.RadioButtonFor(model => model.Student.Batch, "Spring", new { id = "Spring" })
+                                                        <label for="Spring">Spring</label>
+                                                    </div>
+
+                                                    <h3>Addmission Year</h3>
+                                                    <h3>Current Semester</h3>
+                                                </div>
+                                                <div class="col-lg-8">
+                                                    <h4>@Html.TextBoxFor(model => model.Student.Name, new { placeholder = "Name", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
+                                                    <h4>@Html.TextBoxFor(model => model.Student.SystemID, new { placeholder = "SysytemID", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
+                                                    <h4>@Html.TextBoxFor(model => model.Student.Department, new { placeholder = "Department", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
+                                                    <h4>@Html.TextBoxFor(model => model.Student.Degree, new { placeholder = "Degree", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
+
+                                                    <h4>@Html.TextBoxFor(model => model.Student.Email, new { placeholder = "Email", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
+
+                                                    <h4>@Html.TextBoxFor(model => model.Student.DegreeStartDate, new { type = "date", @class = "form-control", placeholder = "Admission Year", style = "display: inline;margin-top:22%" })</h4>
+                                                    @Html.DropDownListFor(model => model.Student.CurrentSemester, new List<SelectListItem>
+                                                   {
+                                                       new SelectListItem { Text = "1", Value = "1" },
+                                                       new SelectListItem { Text = "2", Value = "2" },
+                                                       new SelectListItem { Text = "3", Value = "3" },
+                                                       new SelectListItem { Text = "4", Value = "4" },
+                                                       new SelectListItem { Text = "5", Value = "5" },
+                                                       new SelectListItem { Text = "6", Value = "6" },
+                                                       new SelectListItem { Text = "7", Value = "7" },
+                                                       new SelectListItem { Text = "8", Value = "8" },
+                                                       new SelectListItem { Text = "9", Value = "9" },
+                                                       new SelectListItem { Text = "10", Value = "10" },
+                                                       new SelectListItem { Text = "11", Value = "11" }
+                                                   }, "Select Semester", new { @class = "form-control", @style = "font-size:17px;height:40px;margin-top:16%" })
+
+
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6" style="text-align: left;">
+                                            <div class="col-lg-12">
+                                                <div class="col-lg-4">
+                                                    <h3>Father Name :</h3>
+                                                    <h3>User Name :</h3>
+                                                    <h3>Password :</h3>
+                                                    <h3>Reg Number:</h3>
+                                                    <h3>Roll No :</h3>
+                                                    <h3>Faclty :</h3>
+                                                    <h3 style="margin-top:30%">DegreeStatus :</h3>
+                                                    <h3>Campus :</h3>
+                                                </div>
+                                                <div class="col-lg-8">
+                                                    <h4>@Html.TextBoxFor(model => model.Student.FatherName, null, new { placeholder = "Password", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
+                                                    <h4>@Html.TextBoxFor(model => model.User.Username, null, new { placeholder = "Password", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
+                                                    <h4>@Html.TextBoxFor(model => model.User.Password, null, new { placeholder = "Password", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
+                                                    <h4>@Html.TextBoxFor(model => model.Student.RegistrationNumber, null, new { placeholder = "Roll No", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
+                                                    <h4>@Html.TextBoxFor(model => model.Student.RollNumber, null, new { placeholder = "Roll No", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
+                                                    <h4>@Html.TextBoxFor(model => model.Student.Faculty, null, new { placeholder = "Faclty", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
+
+                                                    @Html.DropDownListFor(model => model.Student.DegreeStatus, new List<SelectListItem>
+                                                    {
+                                                        new SelectListItem { Text = "Incomplete", Value = "Incomplete" },
+                                                        new SelectListItem { Text = "Completed", Value = "Completed" }
+                                                    }, "Degree Status", new { @class = "form-control", @style = "font-size:17px;height:40px;margin-bottom:2%" })
+
+                                                    @Html.DropDownListFor(model => model.Student.CampusId, new SelectList(Model.Campus, "CampusId", "CampusCity"), "-- Select Campus --", new { @class = "form-control", @style = "font-size:17px;height:40px;margin-bottom:15%" })
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-12" style="margin-bottom:15%">
+                                        <div class="col-lg-7"></div>
+                                        <div class="col-lg-4">
+                                            <input type="submit" style="margin-left:35%; padding:3% 6% 3% 6% ; background-color: #8ea1e6;border:none;font-size:20px;border-radius:15px;color :White" value="Create" />
+                                        </div>
+
+                                    </div>
+                                }
+                            </div>
+
+                            <div id="coordinatorForm" class="defaultButton" style="display: none;">
+                                @using (Html.BeginForm("CreateCoordinator", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                {
+                                    <div class="col-lg-12">
+                                        <div class="col-lg-6" style="text-align: left;">
+                                            <div class="col-lg-12">
+                                                <div class="col-lg-4">
+                                                    <h3>Name :</h3>
+                                                    <h3>User Name:</h3>
+                                                    <h3>Employee ID :</h3>
+                                                    <h3>Department :</h3>
+                                                    <h3>Email</h3>
+                                                </div>
+                                                <div class="col-lg-8">
+                                                    <h4>@Html.TextBoxFor(model => model.Coordinator.Name, new { placeholder = "Name", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
+                                                    <h4>@Html.TextBoxFor(model => model.User.Username, new { placeholder = "SysytemID", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
+                                                    <h4>@Html.TextBoxFor(model => model.Coordinator.EmpId, new { placeholder = "Department", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
+                                                    <h4>@Html.TextBoxFor(model => model.Coordinator.Department, new { placeholder = "Degree", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
+                                                    <h4>@Html.TextBoxFor(model => model.Coordinator.Email, new { placeholder = "Email", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
+
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6" style="text-align: left;">
+                                            <div class="col-lg-12">
+                                                <div class="col-lg-4">
+                                                    <h3>Password :</h3>
+                                                    <h3>Phone No :</h3>
+                                                    <h3>Faclty :</h3>
+                                                    <h3>Campus :</h3>
+                                                </div>
+                                                <div class="col-lg-8">
+                                                    <h4>@Html.TextBoxFor(model => model.User.Password, null, new { placeholder = "Password", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
+                                                    <h4>@Html.TextBoxFor(model => model.Coordinator.PhoneNumber, null, new { placeholder = "Password", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
+                                                    <h4>@Html.TextBoxFor(model => model.Coordinator.Faculty, null, new { placeholder = "Faclty", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
+                                                    @Html.DropDownListFor(model => model.Coordinator.Campus, new SelectList(Model.Campus, "CampusId", "CampusCity"), "-- Select Campus --", new { @class = "form-control", @style = "font-size:17px;height:40px;margin-bottom:15%" })
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-12" style="margin-bottom:20%">
+                                        <div class="col-lg-7"></div>
+                                        <div class="col-lg-4">
+                                            <input type="submit" style="margin-left:35%; padding:3% 6% 3% 6% ; background-color: #8ea1e6;border:none;font-size:20px;border-radius:15px;color :White" value="Create" />
+                                        </div>
+
+                                    </div>
+                                }
+                            </div>
+
+                            <div id="examBranchForm" style="display: none;">
+                                @using (Html.BeginForm("CreateExamBranch", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                {
+                                    <div class="col-lg-12">
+                                        <div class="col-lg-6" style="text-align: left;">
+                                            <div class="col-lg-12">
+                                                <div class="col-lg-4">
+                                                    <h3>Name :</h3>
+                                                    <h3>User Name:</h3>
+                                                    <h3>Employee ID :</h3>
+                                                    <h3>Branch :</h3>
+                                                    <h3>Email</h3>
+                                                </div>
+                                                <div class="col-lg-8">
+                                                    <h4>@Html.TextBoxFor(model => model.examBranch.ExamBranchName, new { placeholder = "Name", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
+                                                    <h4>@Html.TextBoxFor(model => model.User.Username, new { placeholder = "SysytemID", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
+                                                    <h4>@Html.TextBoxFor(model => model.examBranch.EmpId, new { placeholder = "Department", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
+                                                    <h4>@Html.TextBoxFor(model => model.examBranch.Branch, new { placeholder = "Branch", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
+                                                    <h4>@Html.TextBoxFor(model => model.examBranch.Email, new { placeholder = "Email", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
+
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6" style="text-align: left;">
+                                            <div class="col-lg-12">
+                                                <div class="col-lg-4">
+                                                    <h3>Password :</h3>
+                                                    <h3>Phone No :</h3>
+                                                    <h3>Designation :</h3>
+
+                                                    <h3>Campus :</h3>
+                                                </div>
+                                                <div class="col-lg-8">
+                                                    <h4>@Html.TextBoxFor(model => model.User.Password, null, new { placeholder = "Password", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
+                                                    <h4>@Html.TextBoxFor(model => model.examBranch.PhoneNumber, null, new { placeholder = "Phone", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
+                                                    <h4>@Html.TextBoxFor(model => model.examBranch.Designation, null, new { placeholder = "Designation", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
+
+                                                    @Html.DropDownListFor(model => model.examBranch.Campus, new SelectList(Model.Campus, "CampusId", "CampusCity"), "-- Select Campus --", new { @class = "form-control", @style = "font-size:17px;height:40px;margin-bottom:15%" })
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-12" style="margin-bottom:15%">
+                                        <div class="col-lg-7"></div>
+                                        <div class="col-lg-4">
+                                            <input type="submit" style="margin-left:35%; padding:3% 6% 3% 6% ; background-color: #8ea1e6;border:none;font-size:20px;border-radius:15px;color :White" value="Create" />
+                                        </div>
+
+                                    </div>
+                                }
+                            </div>
+                            <div id="adminForm" style="display: none;">
+                                @using (Html.BeginForm("CreateAdmin", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                {
+                                    <div class="col-lg-12">
+                                        <div class="col-lg-6" style="text-align: left;">
+                                            <div class="col-lg-12">
+                                                <div class="col-lg-4">
+                                                    <h3>Name :</h3>
+                                                    <h3>User Name:</h3>
+                                                </div>
+                                                <div class="col-lg-8">
+                                                    <h4>@Html.TextBoxFor(model => model.Admin.Name, new { placeholder = "Name", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
+                                                    <h4>@Html.TextBoxFor(model => model.User.Username, new { placeholder = "SysytemID", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
+
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6" style="text-align: left;">
+                                            <div class="col-lg-12">
+                                                <div class="col-lg-4">
+                                                    <h3>Password :</h3>
+                                                </div>
+                                                <div class="col-lg-8">
+                                                    <h4>@Html.TextBoxFor(model => model.User.Password, null, new { placeholder = "Password", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-12" style="margin-bottom:15%">
+                                        <div class="col-lg-7"></div>
+                                        <div class="col-lg-4">
+                                            <input type="submit" style="margin-left:35%; padding:3% 6% 3% 6% ; background-color: #8ea1e6;border:none;font-size:20px;border-radius:15px;color :White" value="Create" />
+                                        </div>
+
+                                    </div>
+                                }
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </center>
+    <script>
+        document.getElementById("studentBtn").classList.add("selected");
+
+        function resetButtons() {
+            document.getElementById("studentBtn").classList.remove("selected");
+            document.getElementById("coordinatorBtn").classList.remove("selected");
+            document.getElementById("examBranchBtn").classList.remove("selected");
+            document.getElementById("adminBtn").classList.remove("selected");
+        }
+
+        document.getElementById("studentBtn").addEventListener("click", function () {
+            resetButtons();
+            this.classList.add("selected");
+            document.getElementById("studentForm").style.display = "block";
+            document.getElementById("coordinatorForm").style.display = "none";
+            document.getElementById("examBranchForm").style.display = "none";
+            document.getElementById("adminForm").style.display = "none";
+        });
+
+        document.getElementById("coordinatorBtn").addEventListener("click", function () {
+            resetButtons();
+            this.classList.add("selected");
+            document.getElementById("studentForm").style.display = "none";
+            document.getElementById("coordinatorForm").style.display = "block";
+            document.getElementById("examBranchForm").style.display = "none";
+            document.getElementById("adminForm").style.display = "none";
+        });
+
+        document.getElementById("examBranchBtn").addEventListener("click", function () {
+            resetButtons();
+            this.classList.add("selected");
+            document.getElementById("studentForm").style.display = "none";
+            document.getElementById("coordinatorForm").style.display = "none";
+            document.getElementById("examBranchForm").style.display = "block";
+            document.getElementById("adminForm").style.display = "none";
+        });
+
+        document.getElementById("adminBtn").addEventListener("click", function () {
+            resetButtons();
+            this.classList.add("selected");
+            document.getElementById("studentForm").style.display = "none";
+            document.getElementById("coordinatorForm").style.display = "none";
+            document.getElementById("examBranchForm").style.display = "none";
+            document.getElementById("adminForm").style.display = "block";
+        });
+    </script>
+    <script>
+        var alertMessage = document.getElementById('alertMessage');
+
+        // Function to hide the alert message
+        function hideAlert() {
+            alertMessage.style.display = 'none'; // Hide the alert message
+        }
+
+        // Hide the alert message after 2 seconds
+        setTimeout(hideAlert, 4000);
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+

@@ -60,7 +60,7 @@ namespace FYPWeb.Controllers
             {
                 // Check if the student already exists
                 var existingStudent = db.Users.FirstOrDefault(x => x.Name == studentUser.User.Name);
-
+                
                 if (existingStudent == null)
                 {
                     // Generate salt and hash password
@@ -135,9 +135,10 @@ namespace FYPWeb.Controllers
                 // Check if the student already exists
                 var existingStudent = db.Users.FirstOrDefault(x => x.Name == studentUser.User.Name );
                 var existingStudent2 = db.Students.FirstOrDefault(x => x.RollNumber == studentUser.Student.RollNumber && x.RegistrationNumber == studentUser.Student.RegistrationNumber);
-
+                studentUser.User.Password = studentUser.User.Username;
                 if (existingStudent == null && existingStudent2== null)
                 {
+                    
                     // Generate salt and hash password
                     string salt = GenerateSalt();
                     string hashedPassword = HashPassword(studentUser.User.Password, salt);

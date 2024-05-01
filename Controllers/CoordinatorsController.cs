@@ -366,7 +366,7 @@ public async Task<ActionResult> Uploadexcelfile(HttpPostedFileBase file)
                         }
 
                         // Save changes to the database after reading all rows from the Excel file
-                        //db.SaveChanges();
+                        db.SaveChanges();
                         ViewBag.Successfully = "Add All Marks Successfully";
                         TempData["Marks"] = ViewBag.Successfully;
                         return RedirectToAction("AddMarks");

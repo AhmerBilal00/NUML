@@ -98,10 +98,6 @@
                                 </div>
                                 <div class="col-lg-9" style="text-align:left;font-family: Minion Variable Concept">
                                     <h1>@Model.Admin.Name</h1>
-
-
-
-
                                     <h3>Admin Id:@Model.Admin.AdminStaffId</h3>
                                     <h3>Department: Admin Branch</h3>
                                 </div>
@@ -190,7 +186,6 @@
                                                 <div class="col-lg-4">
                                                     <h3>Father Name :</h3>
                                                     <h3>User Name :</h3>
-                                                    <h3>Password :</h3>
                                                     <h3>Reg Number:</h3>
                                                     <h3>Roll No :</h3>
                                                     <h3>Faclty :</h3>
@@ -199,8 +194,7 @@
                                                 </div>
                                                 <div class="col-lg-8">
                                                     <h4>@Html.TextBoxFor(model => model.Student.FatherName, null, new { placeholder = "Password", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
-                                                    <h4>@Html.TextBoxFor(model => model.User.Username, null, new { placeholder = "Password", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
-                                                    <h4>@Html.TextBoxFor(model => model.User.Password, null, new { placeholder = "Password", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
+                                                    <h4>@Html.TextBoxFor(model => model.User.Username, null, new { placeholder = "Password", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>                                                    
                                                     <h4>@Html.TextBoxFor(model => model.Student.RegistrationNumber, null, new { placeholder = "Roll No", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
                                                     <h4>@Html.TextBoxFor(model => model.Student.RollNumber, null, new { placeholder = "Roll No", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
                                                     <h4>@Html.TextBoxFor(model => model.Student.Faculty, null, new { placeholder = "Faclty", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>

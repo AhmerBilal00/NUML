@@ -29,23 +29,28 @@ namespace FYPWeb.Controllers
         
         public ActionResult CreateProfile()
         {
-            try {
-                StudentUser studentUser = new StudentUser();
-                studentUser.Campus = db.Campuses.ToList();
-                var data = Session["Admin"];
-                studentUser.Admin = data as AdminStaff;
-                string message = TempData["Profile"] as string; // Retrieve message from TempData
-                if (!string.IsNullOrEmpty(message))
-                {
-                    ViewBag.Profile = message;
-                }
-                return View(studentUser);
-            }
-            catch (Exception e)
+            
+            if (Session["Admin"] != null)
             {
+                try
+                {
+                    StudentUser studentUser = new StudentUser();
+                    studentUser.Campus = db.Campuses.ToList();
+                    var data = Session["Admin"];
+                    studentUser.Admin = data as AdminStaff;
+                    string message = TempData["Profile"] as string; // Retrieve message from TempData
+                    if (!string.IsNullOrEmpty(message))
+                    {
+                        ViewBag.Profile = message;
+                    }
+                    return View(studentUser);
+                }
+                catch (Exception e)
+                {
 
+                }
             }
-            return View();
+            return RedirectToAction("Index", "Student");
         }
 
         [HttpPost]

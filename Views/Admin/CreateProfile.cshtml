@@ -198,7 +198,7 @@
                                                     <h4>@Html.TextBoxFor(model => model.Student.Faculty, null, new { placeholder = "Faclty", @class = "form-control", style = "display: inline;margin-bottom:2%", @required = "required" })</h4>
 
                                                     @Html.DropDownListFor(model => model.Student.DegreeStatus, new List<SelectListItem>
-                                                    {
+                                                    { 
                                                         new SelectListItem { Text = "Incomplete", Value = "Incomplete" },
                                                         new SelectListItem { Text = "Completed", Value = "Completed" }
                                                     }, "Degree Status", new { @class = "form-control", @style = "font-size:17px;height:40px;margin-bottom:2%", @required = "required" })})

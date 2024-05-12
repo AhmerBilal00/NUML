@@ -153,9 +153,9 @@
                                                     new SelectListItem { Text = "9", Value = "9" },
                                                     new SelectListItem { Text = "10", Value = "10" },
                                                     new SelectListItem { Text = "11", Value = "11" }
-                                                }, "Select Semester", new { @class = "form-control", @style = "font-size:17px;height:40px;margin-top:1%;margin-bottom:10%", @id = "result_SemesterId" })
+                                                }, "Select Semester", new { @class = "form-control", @style = "font-size:17px;height:40px;margin-top:1%;margin-bottom:10%", @id = "result_SemesterId", @required = "required" })
 
-                                                @Html.DropDownListFor(model => model.result.CourseId, new SelectList(Enumerable.Empty<SelectListItem>(), "CourseId", "CourseName"), "-- Select Course --", new { @class = "form-control", @style = "font-size:17px;height:40px;margin-bottom:10%", @id = "result_CourseId" })
+                                                @Html.DropDownListFor(model => model.result.CourseId, new SelectList(Enumerable.Empty<SelectListItem>(), "CourseId", "CourseName"), "-- Select Course --", new { @class = "form-control", @style = "font-size:17px;height:40px;margin-bottom:10%", @id = "result_CourseId", @required = "required" })
                                             </div>
                                         </div>
                                     </div>
@@ -166,9 +166,9 @@
                                                 <h3>Obtain marks:</h3>
                                             </div>
                                             <div class="col-lg-8">
-                                                @Html.DropDownListFor(model => model.result.StudentId, new SelectList(Enumerable.Empty<SelectListItem>(), "StudentId", "Name"), "-- Select Student --", new { @class = "form-control", @style = "font-size:17px;height:40px;margin-bottom:10%", @id = "result_studentId" })
+                                                @Html.DropDownListFor(model => model.result.StudentId, new SelectList(Enumerable.Empty<SelectListItem>(), "StudentId", "Name"), "-- Select Student --", new { @class = "form-control", @style = "font-size:17px;height:40px;margin-bottom:10%", @id = "result_studentId", @required = "required" })
 
-                                                <h4>@Html.TextBoxFor(model => model.result.ObtainMarks, new { placeholder = "Obtain Marks", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
+                                                <h4>@Html.TextBoxFor(model => model.result.ObtainMarks, new { placeholder = "Obtain Marks", @class = "form-control", style = "display: inline; margin-bottom:2%", @required = "required", type = "number" })</h4>
                                             </div>
                                         </div>
                                     </div>
@@ -176,7 +176,7 @@
                                 <div class="col-lg-12" style="margin-bottom:20%">
                                     <div class="col-lg-7"></div>
                                     <div class="col-lg-4">
-                                        <input type="submit" style="margin: 5% 0 0 35%; padding: 3% 6% 3% 6%; background-color: #8ea1e6; border: none; font-size: 20px; border-radius: 15px; color: White" value="Add" />
+                                        <input type="submit" style="margin: 5% 0 0 35%; padding: 3% 6% 3% 6%; background-color: #8ea1e6; border: none; font-size: 20px; border-radius: 15px; color: White" value="Add Marks" />
                                     </div>
                                 </div>
                             }

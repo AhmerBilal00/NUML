@@ -152,14 +152,14 @@
                                                     <h3>Current Semester</h3>
                                                 </div>
                                                 <div class="col-lg-8">
-                                                    <h4>@Html.TextBoxFor(model => model.Student.Name, new { placeholder = "Name", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
-                                                    <h4>@Html.TextBoxFor(model => model.Student.SystemID, new { placeholder = "SysytemID", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
-                                                    <h4>@Html.TextBoxFor(model => model.Student.Department, new { placeholder = "Department", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
-                                                    <h4>@Html.TextBoxFor(model => model.Student.Degree, new { placeholder = "Degree", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
+                                                    <h4>@Html.TextBoxFor(model => model.Student.Name, new { placeholder = "Name", @class = "form-control", style = "display: inline;margin-bottom:2%", @required = "required" })</h4>
+                                                    <h4>@Html.TextBoxFor(model => model.Student.SystemID, new { placeholder = "System ID", @class = "form-control", style = "display: inline;margin-bottom:2%", @required = "required" })</h4>
+                                                    <h4>@Html.TextBoxFor(model => model.Student.Department, new { placeholder = "Department", @class = "form-control", style = "display: inline;margin-bottom:2%", @required = "required" })</h4>
+                                                    <h4>@Html.TextBoxFor(model => model.Student.Degree, new { placeholder = "Degree", @class = "form-control", style = "display: inline;margin-bottom:2%", @required = "required" })</h4>
 
-                                                    <h4>@Html.TextBoxFor(model => model.Student.Email, new { placeholder = "Email", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
+                                                    <h4>@Html.TextBoxFor(model => model.Student.Email, new { placeholder = "Email", @class = "form-control", style = "display: inline;margin-bottom:2%", @required = "required" })</h4>
 
-                                                    <h4>@Html.TextBoxFor(model => model.Student.DegreeStartDate, new { type = "date", @class = "form-control", placeholder = "Admission Year", style = "display: inline;margin-top:22%" })</h4>
+                                                    <h4>@Html.TextBoxFor(model => model.Student.DegreeStartDate, new { type = "date", @class = "form-control", placeholder = "Admission Year", style = "display: inline;margin-top:22%", @required = "required" })</h4>
                                                     @Html.DropDownListFor(model => model.Student.CurrentSemester, new List<SelectListItem>
                                                    {
                                                        new SelectListItem { Text = "1", Value = "1" },
@@ -173,7 +173,7 @@
                                                        new SelectListItem { Text = "9", Value = "9" },
                                                        new SelectListItem { Text = "10", Value = "10" },
                                                        new SelectListItem { Text = "11", Value = "11" }
-                                                   }, "Select Semester", new { @class = "form-control", @style = "font-size:17px;height:40px;margin-top:16%" })
+                                                   }, "Select Semester", new { @class = "form-control", @style = "font-size:17px;height:40px;margin-top:16%", @required = "required" })
 
 
 
@@ -185,7 +185,6 @@
                                             <div class="col-lg-12">
                                                 <div class="col-lg-4">
                                                     <h3>Father Name :</h3>
-                                                    <h3>User Name :</h3>
                                                     <h3>Reg Number:</h3>
                                                     <h3>Roll No :</h3>
                                                     <h3>Faclty :</h3>
@@ -193,19 +192,18 @@
                                                     <h3>Campus :</h3>
                                                 </div>
                                                 <div class="col-lg-8">
-                                                    <h4>@Html.TextBoxFor(model => model.Student.FatherName, null, new { placeholder = "Password", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
-                                                    <h4>@Html.TextBoxFor(model => model.User.Username, null, new { placeholder = "Password", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>                                                    
-                                                    <h4>@Html.TextBoxFor(model => model.Student.RegistrationNumber, null, new { placeholder = "Roll No", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
-                                                    <h4>@Html.TextBoxFor(model => model.Student.RollNumber, null, new { placeholder = "Roll No", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
-                                                    <h4>@Html.TextBoxFor(model => model.Student.Faculty, null, new { placeholder = "Faclty", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
+                                                    <h4>@Html.TextBoxFor(model => model.Student.FatherName, null, new { placeholder = "Father Name", @class = "form-control", style = "display: inline;margin-bottom:2%", @required = "required" })</h4>                                                    
+                                                    <h4>@Html.TextBoxFor(model => model.Student.RegistrationNumber, null, new { placeholder = "RegistrationNumber", @class = "form-control", style = "display: inline;margin-bottom:2%", @required = "required" })</h4>
+                                                    <h4>@Html.TextBoxFor(model => model.Student.RollNumber, null, new { placeholder = "Roll No", type="Number", @class = "form-control", style = "display: inline;margin-bottom:2%", @required = "required" })</h4>
+                                                    <h4>@Html.TextBoxFor(model => model.Student.Faculty, null, new { placeholder = "Faclty", @class = "form-control", style = "display: inline;margin-bottom:2%", @required = "required" })</h4>
 
                                                     @Html.DropDownListFor(model => model.Student.DegreeStatus, new List<SelectListItem>
                                                     {
                                                         new SelectListItem { Text = "Incomplete", Value = "Incomplete" },
                                                         new SelectListItem { Text = "Completed", Value = "Completed" }
-                                                    }, "Degree Status", new { @class = "form-control", @style = "font-size:17px;height:40px;margin-bottom:2%" })
+                                                    }, "Degree Status", new { @class = "form-control", @style = "font-size:17px;height:40px;margin-bottom:2%", @required = "required" })})
 
-                                                    @Html.DropDownListFor(model => model.Student.CampusId, new SelectList(Model.Campus, "CampusId", "CampusCity"), "-- Select Campus --", new { @class = "form-control", @style = "font-size:17px;height:40px;margin-bottom:15%" })
+                                                    @Html.DropDownListFor(model => model.Student.CampusId, new SelectList(Model.Campus, "CampusId", "CampusCity"), "-- Select Campus --", new { @class = "form-control", @style = "font-size:17px;height:40px;margin-bottom:15%", @required = "required" })
 
                                                 </div>
                                             </div>
@@ -236,11 +234,11 @@
                                                     <h3>Email</h3>
                                                 </div>
                                                 <div class="col-lg-8">
-                                                    <h4>@Html.TextBoxFor(model => model.Coordinator.Name, new { placeholder = "Name", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
-                                                    <h4>@Html.TextBoxFor(model => model.User.Username, new { placeholder = "SysytemID", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
-                                                    <h4>@Html.TextBoxFor(model => model.Coordinator.EmpId, new { placeholder = "Department", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
-                                                    <h4>@Html.TextBoxFor(model => model.Coordinator.Department, new { placeholder = "Degree", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
-                                                    <h4>@Html.TextBoxFor(model => model.Coordinator.Email, new { placeholder = "Email", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
+                                                    <h4>@Html.TextBoxFor(model => model.Coordinator.Name, new { placeholder = "Name", @class = "form-control", style = "display: inline;margin-bottom:2%", @required = "required" })</h4>
+                                                    <h4>@Html.TextBoxFor(model => model.User.Username, new { placeholder = "User Name", @class = "form-control", style = "display: inline;margin-bottom:2%", @required = "required" })</h4>
+                                                    <h4>@Html.TextBoxFor(model => model.Coordinator.EmpId, new { placeholder = "Emp ID", @class = "form-control", style = "display: inline;margin-bottom:2%", @required = "required" })</h4>
+                                                    <h4>@Html.TextBoxFor(model => model.Coordinator.Department, new { placeholder = "Deparment", @class = "form-control", style = "display: inline;margin-bottom:2%", @required = "required" })</h4>
+                                                    <h4>@Html.TextBoxFor(model => model.Coordinator.Email, new { placeholder = "Email", @class = "form-control", style = "display: inline;margin-bottom:2%", @required = "required" })</h4>
 
 
 
@@ -256,10 +254,10 @@
                                                     <h3>Campus :</h3>
                                                 </div>
                                                 <div class="col-lg-8">
-                                                    <h4>@Html.TextBoxFor(model => model.User.Password, null, new { placeholder = "Password", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
-                                                    <h4>@Html.TextBoxFor(model => model.Coordinator.PhoneNumber, null, new { placeholder = "Password", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
-                                                    <h4>@Html.TextBoxFor(model => model.Coordinator.Faculty, null, new { placeholder = "Faclty", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
-                                                    @Html.DropDownListFor(model => model.Coordinator.Campus, new SelectList(Model.Campus, "CampusId", "CampusCity"), "-- Select Campus --", new { @class = "form-control", @style = "font-size:17px;height:40px;margin-bottom:15%" })
+                                                    <h4>@Html.TextBoxFor(model => model.User.Password, null, new { placeholder = "Password", @class = "form-control", style = "display: inline;margin-bottom:2%", @required = "required" })</h4>
+                                                    <h4>@Html.TextBoxFor(model => model.Coordinator.PhoneNumber, null, new { placeholder = "Phone Number", @class = "form-control", style = "display: inline;margin-bottom:2%", @required = "required" })</h4>
+                                                    <h4>@Html.TextBoxFor(model => model.Coordinator.Faculty, null, new { placeholder = "Faclty", @class = "form-control", style = "display: inline;margin-bottom:2%", @required = "required" })</h4>
+                                                    @Html.DropDownListFor(model => model.Coordinator.Campus, new SelectList(Model.Campus, "CampusId", "CampusCity"), "-- Select Campus --", new { @class = "form-control", @style = "font-size:17px;height:40px;margin-bottom:15%", @required = "required" })
 
                                                 </div>
                                             </div>
@@ -290,11 +288,11 @@
                                                     <h3>Email</h3>
                                                 </div>
                                                 <div class="col-lg-8">
-                                                    <h4>@Html.TextBoxFor(model => model.examBranch.ExamBranchName, new { placeholder = "Name", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
-                                                    <h4>@Html.TextBoxFor(model => model.User.Username, new { placeholder = "SysytemID", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
-                                                    <h4>@Html.TextBoxFor(model => model.examBranch.EmpId, new { placeholder = "Department", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
-                                                    <h4>@Html.TextBoxFor(model => model.examBranch.Branch, new { placeholder = "Branch", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
-                                                    <h4>@Html.TextBoxFor(model => model.examBranch.Email, new { placeholder = "Email", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
+                                                    <h4>@Html.TextBoxFor(model => model.examBranch.ExamBranchName, new { placeholder = "Name", @class = "form-control", style = "display: inline;margin-bottom:2%", @required = "required" })</h4>
+                                                    <h4>@Html.TextBoxFor(model => model.User.Username, new { placeholder = "User Name", @class = "form-control", style = "display: inline;margin-bottom:2%", @required = "required" })</h4>
+                                                    <h4>@Html.TextBoxFor(model => model.examBranch.EmpId, new { placeholder = "Emp ID", @class = "form-control", style = "display: inline;margin-bottom:2%", @required = "required" })</h4>
+                                                    <h4>@Html.TextBoxFor(model => model.examBranch.Branch, new { placeholder = "Branch", @class = "form-control", style = "display: inline;margin-bottom:2%", @required = "required" })</h4>
+                                                    <h4>@Html.TextBoxFor(model => model.examBranch.Email, new { placeholder = "Email", @class = "form-control", style = "display: inline;margin-bottom:2%", @required = "required" })</h4>
 
 
 
@@ -311,11 +309,11 @@
                                                     <h3>Campus :</h3>
                                                 </div>
                                                 <div class="col-lg-8">
-                                                    <h4>@Html.TextBoxFor(model => model.User.Password, null, new { placeholder = "Password", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
-                                                    <h4>@Html.TextBoxFor(model => model.examBranch.PhoneNumber, null, new { placeholder = "Phone", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
-                                                    <h4>@Html.TextBoxFor(model => model.examBranch.Designation, null, new { placeholder = "Designation", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
+                                                    <h4>@Html.TextBoxFor(model => model.User.Password, null, new { placeholder = "Password", @class = "form-control", style = "display: inline;margin-bottom:2%", @required = "required" })</h4>
+                                                    <h4>@Html.TextBoxFor(model => model.examBranch.PhoneNumber, null, new { placeholder = "Phone", @class = "form-control", style = "display: inline;margin-bottom:2%", @required = "required" })</h4>
+                                                    <h4>@Html.TextBoxFor(model => model.examBranch.Designation, null, new { placeholder = "Designation", @class = "form-control", style = "display: inline;margin-bottom:2%", @required = "required" })</h4>
 
-                                                    @Html.DropDownListFor(model => model.examBranch.Campus, new SelectList(Model.Campus, "CampusId", "CampusCity"), "-- Select Campus --", new { @class = "form-control", @style = "font-size:17px;height:40px;margin-bottom:15%" })
+                                                    @Html.DropDownListFor(model => model.examBranch.Campus, new SelectList(Model.Campus, "CampusId", "CampusCity"), "-- Select Campus --", new { @class = "form-control", @style = "font-size:17px;height:40px;margin-bottom:15%", @required = "required" })
 
                                                 </div>
                                             </div>
@@ -342,11 +340,8 @@
                                                     <h3>User Name:</h3>
                                                 </div>
                                                 <div class="col-lg-8">
-                                                    <h4>@Html.TextBoxFor(model => model.Admin.Name, new { placeholder = "Name", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
-                                                    <h4>@Html.TextBoxFor(model => model.User.Username, new { placeholder = "SysytemID", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
-
-
-
+                                                    <h4>@Html.TextBoxFor(model => model.Admin.Name, new { placeholder = "Name", @class = "form-control", style = "display: inline;margin-bottom:2%", @required = "required" })</h4>
+                                                    <h4>@Html.TextBoxFor(model => model.User.Username, new { placeholder = "User Name", @class = "form-control", style = "display: inline;margin-bottom:2%", @required = "required" })</h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -356,7 +351,7 @@
                                                     <h3>Password :</h3>
                                                 </div>
                                                 <div class="col-lg-8">
-                                                    <h4>@Html.TextBoxFor(model => model.User.Password, null, new { placeholder = "Password", @class = "form-control", style = "display: inline;margin-bottom:2%" })</h4>
+                                                    <h4>@Html.TextBoxFor(model => model.User.Password, null, new { placeholder = "Password", @class = "form-control", style = "display: inline;margin-bottom:2%", @required = "required" })</h4>
                                                 </div>
                                             </div>
                                         </div>

@@ -120,7 +120,7 @@
                                                        new SelectListItem { Text = "9", Value = "9" },
                                                        new SelectListItem { Text = "10", Value = "10" },
                                                        new SelectListItem { Text = "11", Value = "11" }
-                                                   }, "Select Semester", new { @class = "form-control", @style = "font-size:17px;height:40px;margin-top:6%" })
+                                                   }, "Select Semester", new { @class = "form-control", @style = "font-size:17px;height:40px;margin-top:6%", @required = "required" })
 
                                             </div>
                                         </div>
@@ -131,7 +131,7 @@
                                                 <h3>Course : </h3>
                                             </div>
                                             <div class="col-lg-8">
-                                             @Html.DropDownListFor(model => model.studentsCours.CourseId, new SelectList(Model.Courses, "CourseId", "CourseName"), "-- Select Course --", new { @class = "form-control", @style = "font-size:17px;height:40px;margin-bottom:15%" })
+                                             @Html.DropDownListFor(model => model.studentsCours.CourseId, new SelectList(Model.Courses, "CourseId", "CourseName"), "-- Select Course --", new { @class = "form-control", @style = "font-size:17px;height:40px;margin-bottom:15%", @required = "required" })
 
                                             </div>
                                         </div>
@@ -141,7 +141,7 @@
                                 <div class="col-lg-12" style="margin-bottom:20%">
                                     <div class="col-lg-7"></div>
                                     <div class="col-lg-4">
-                                        <input type="submit" style="margin-left:35%; padding:3% 6% 3% 6% ; background-color: #8ea1e6;border:none;font-size:20px;border-radius:15px;color :White" value="Create" />
+                                        <input type="submit" style="margin-left:35%; padding:3% 6% 3% 6% ; background-color: #8ea1e6;border:none;font-size:20px;border-radius:15px;color :White" value="Assign" />
                                     </div>
 
                                 </div>

@@ -50,7 +50,6 @@ namespace FYPWeb.Controllers
             }
             return RedirectToAction("Index", "Student");
         }
-
         [HttpPost]
         public ActionResult AssignNewCourse(ManageCourse studentUser)
         {
@@ -122,7 +121,6 @@ namespace FYPWeb.Controllers
             }
             return RedirectToAction("Index", "Student");
         }
-
         [HttpPost]
         public ActionResult AssignNewRepeatCourse(ManageCourse studentUser)
         {
@@ -182,7 +180,6 @@ namespace FYPWeb.Controllers
                 return RedirectToAction("AssignCourse", "Coordinators");
             }
         }
-
         public ActionResult AddMarks()
         {
             if (Session["Coordinators"] != null)
@@ -200,7 +197,6 @@ namespace FYPWeb.Controllers
             }
             return RedirectToAction("Index", "Student");
         }
-
         [HttpPost]
         public ActionResult AddNewMarks(ManageCourse studentUser)
         {
@@ -311,7 +307,6 @@ namespace FYPWeb.Controllers
                            select c).ToList();
             return Json(courses, JsonRequestBehavior.AllowGet);
         }
-
         public ActionResult GetStudentsBySemesterAndCourse(int semesterId, int courseId)
         {
 
@@ -327,60 +322,60 @@ namespace FYPWeb.Controllers
             return Json(students, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
-public async Task<ActionResult> Uploadexcelfile(HttpPostedFileBase file)
-{
-    if (file != null && file.ContentLength > 0)
-    {
-        var fileName = Path.GetFileName(file.FileName);
-        var uploadsFolder = Path.Combine(Server.MapPath("~/Upload"), fileName);
-
-        using (var stream = new FileStream(uploadsFolder, FileMode.Create))
+        public async Task<ActionResult> Uploadexcelfile(HttpPostedFileBase file)
         {
-            await file.InputStream.CopyToAsync(stream);
-        }
-
-        using (var stream = System.IO.File.Open(uploadsFolder, FileMode.Open, FileAccess.Read))
-        {
-            using (var reader = ExcelReaderFactory.CreateReader(stream))
+            if (file != null && file.ContentLength > 0)
             {
-                // Assuming the first row is a header, so skip it
-                reader.Read();
+                var fileName = Path.GetFileName(file.FileName);
+                var uploadsFolder = Path.Combine(Server.MapPath("~/Upload"), fileName);
 
-                while (reader.Read()) // Read each row in the Excel sheet
+                using (var stream = new FileStream(uploadsFolder, FileMode.Create))
                 {
-                    Result Rs = new Result();
-                    ManageCourse mc = new ManageCourse();
-                    int maxResultId = db.Results.Max(s => (int?)s.StudentId) ?? 0;
-                    int newResultId = maxResultId + 1;
-                    Rs.ResultId = newResultId;
-                    Rs.ObtainMarks = Convert.ToInt32(reader.GetValue(1));
-                    int rollNumber = Convert.ToInt32(reader.GetValue(2));
-                    // Retrieve the student from the database using LINQ
-                    mc.student = db.Students.FirstOrDefault(x => x.RollNumber == rollNumber);
-                    Rs.StudentId = mc.student.StudentId;
-                    string courseCode = reader.GetValue(3).ToString();
-                    mc.Course = db.Courses.FirstOrDefault(x => x.CourseCode == courseCode);
-                    Rs.CourseId = mc.Course.CourseId;
-                    Rs.SemesterId = Convert.ToInt32(reader.GetValue(4));
-                    db.Results.Add(Rs);
-                        }
-
-                        // Save changes to the database after reading all rows from the Excel file
-                        db.SaveChanges();
-                        ViewBag.Successfully = "Add All Marks Successfully";
-                        TempData["Marks"] = ViewBag.Successfully;
-                        return RedirectToAction("AddMarks");
-                    }
+                    await file.InputStream.CopyToAsync(stream);
                 }
-    }
-            else
-            {
-                ViewBag.Message = "empty";
-            }
 
-    // Optionally, you can perform additional processing with the uploaded file here
-    return RedirectToAction("Index");
-}
+                using (var stream = System.IO.File.Open(uploadsFolder, FileMode.Open, FileAccess.Read))
+                {
+                    using (var reader = ExcelReaderFactory.CreateReader(stream))
+                    {
+                        // Assuming the first row is a header, so skip it
+                        reader.Read();
+
+                        while (reader.Read()) // Read each row in the Excel sheet
+                        {
+                            Result Rs = new Result();
+                            ManageCourse mc = new ManageCourse();
+                            int maxResultId = db.Results.Max(s => (int?)s.StudentId) ?? 0;
+                            int newResultId = maxResultId + 1;
+                            Rs.ResultId = newResultId;
+                            Rs.ObtainMarks = Convert.ToInt32(reader.GetValue(1));
+                            int rollNumber = Convert.ToInt32(reader.GetValue(2));
+                            // Retrieve the student from the database using LINQ
+                            mc.student = db.Students.FirstOrDefault(x => x.RollNumber == rollNumber);
+                            Rs.StudentId = mc.student.StudentId;
+                            string courseCode = reader.GetValue(3).ToString();
+                            mc.Course = db.Courses.FirstOrDefault(x => x.CourseCode == courseCode);
+                            Rs.CourseId = mc.Course.CourseId;
+                            Rs.SemesterId = Convert.ToInt32(reader.GetValue(4));
+                            db.Results.Add(Rs);
+                                }
+
+                                // Save changes to the database after reading all rows from the Excel file
+                                db.SaveChanges();
+                                ViewBag.Successfully = "Add All Marks Successfully";
+                                TempData["Marks"] = ViewBag.Successfully;
+                                return RedirectToAction("AddMarks");
+                            }
+                        }
+            }
+                    else
+                    {
+                        ViewBag.Message = "empty";
+                    }
+
+            // Optionally, you can perform additional processing with the uploaded file here
+            return RedirectToAction("Index");
+        }
 
 
     }
